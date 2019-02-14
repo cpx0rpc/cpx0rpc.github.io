@@ -1,0 +1,24 @@
+{
+  "short_name": "PWASec",
+  "name": "PWA Security Research",
+  "icons": [
+    {
+      "src": "/icons/icon192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+	{
+      "src": "/icons/icon512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#3367D6",
+  "gcm_sender_id": "236023530529",
+  "notification_public_key": "some_pub_key",
+  "notification_forward_url": "https://cpx0rpc.heliohost.org/endpoint.php"
+}

@@ -1,0 +1,88 @@
+<head>
+	<title> Chromium Test </title>
+	<link rel="manifest" href="/manifest.json">
+	<script src='sender.js'> </script>
+</head>
+	
+<body>
+	Test Service Worker
+
+	<script src="sw-register.js"> </script>
+
+	<div id='PushManager-DIV'>
+		<br> <br>
+		
+		Test Push Manager 
+		
+		<br> <br>
+		
+		<button id='subscribe'> Subscribe </button> <button id='subscribe-pkey'> Subscribe PKey </button> <button id='unsubscribe'> Unsubscribe </button>
+
+		<br> <br>
+		
+		<button id='forward'> Forward </button>
+
+		<br> <br>
+		
+		<button id='printPush'> Print </button>
+		
+		<br> <br>
+		
+	</div>
+
+	<div id='IDB-DIV'>
+	
+		Test IndexedDB
+		
+		<br> <br>
+		
+		<div id='IDB-DOC-DIV'>
+		
+			From Document Context
+			
+			<br> <br>
+			
+			<button id='create'> Create </button> <button id='createPrivate'> Create Private </button> 
+			
+			<br> <br>
+			
+			<button id='insert'> Insert </button> <button id='insertPrivate'> Insert Private </button>
+			
+			<br> <br>
+			
+			<button id='read'> Read </button> <button id='readPrivate'> Read Private </button>
+
+			<br> <br>
+		</div>
+		
+		<div id='IDB-SW-DIV'>
+		
+			From Service Worker Context
+			
+			<br> <br>
+			
+			<button id='SWcreate'> Create </button> <button id='SWcreatePrivate'> Create Private </button> 
+			
+			<br> <br>
+			
+			<button id='SWinsert'> Insert </button> <button id='SWinsertPrivate'> Insert Private </button>
+			
+			<br> <br>
+			
+			<button id='SWread'> Read </button> <button id='SWreadPrivate'> Read Private </button>
+
+			<br> <br>
+		</div>
+	</div>
+	
+	<div id='SendPush-DIV'>
+		<input type='text' id='endpoint' size='70'> <br>
+		<input type='text' id='title' size='50'> <br>
+		<input type='text' id='body' size='100'> <br>
+		<button id='submitGCMSend'> GCM </button> <button id='submitFCMSend'> FCM </button>
+	</div>
+
+	<script src="idb.js"> </script> 
+	<script src="push.js"> </script> 
+	
+</body>
