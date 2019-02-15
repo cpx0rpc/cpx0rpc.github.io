@@ -3,11 +3,11 @@ function createDB(dbname, tablename, pv) {
 	if(pv) {
 		console.log("[SW] Calling openPrivate()");
 		var before = performance.now();
-		request = idb.openPrivate(dbname);
+		request = indexedDB.openPrivate(dbname);
 	} else { 
 		console.log("[SW] Calling open()");
 		var before = performance.now();
-		request = idb.open(dbname);
+		request = indexedDB.open(dbname);
 	}
 
 	request.onupgradeneeded = function() {
@@ -33,10 +33,10 @@ function insert(dbname, tablename, data, pv) {
 	var request;
 	if(pv) {
 		console.log("[SW] Inserting Private DB:");
-		request = idb.openPrivate(dbname);
+		request = indexedDB.openPrivate(dbname);
 	} else { 
 		console.log("[SW] Inserting Public DB:");
-		request = idb.open(dbname);
+		request = indexedDB.open(dbname);
 	}
 	
 	request.onupgradeneeded = function() {
@@ -75,10 +75,10 @@ function read(dbname, tablename, pv) {
 	var request;
 	if(pv) {
 		console.log("[SW] Reading Private DB:");
-		request = idb.openPrivate(dbname);
+		request = indexedDB.openPrivate(dbname);
 	} else { 
 		console.log("[SW] Reading Public DB:");
-		request = idb.open(dbname);
+		request = indexedDB.open(dbname);
 	}
 	
 	request.onupgradeneeded = function() {
