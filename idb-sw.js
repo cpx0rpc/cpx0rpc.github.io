@@ -1,9 +1,9 @@
 function createDB(dbname, tablename, pv) {
 	var request;
 	if(pv) {
-		console.log("[SW] Calling openPrivate()");
+		console.log("[SW] Calling privateOpen()");
 		var before = performance.now();
-		request = indexedDB.openPrivate(dbname);
+		request = indexedDB.privateOpen(dbname);
 	} else { 
 		console.log("[SW] Calling open()");
 		var before = performance.now();
@@ -33,7 +33,7 @@ function insert(dbname, tablename, data, pv) {
 	var request;
 	if(pv) {
 		console.log("[SW] Inserting Private DB:");
-		request = indexedDB.openPrivate(dbname);
+		request = indexedDB.privateOpen(dbname);
 	} else { 
 		console.log("[SW] Inserting Public DB:");
 		request = indexedDB.open(dbname);
@@ -75,7 +75,7 @@ function read(dbname, tablename, pv) {
 	var request;
 	if(pv) {
 		console.log("[SW] Reading Private DB:");
-		request = indexedDB.openPrivate(dbname);
+		request = indexedDB.privateOpen(dbname);
 	} else { 
 		console.log("[SW] Reading Public DB:");
 		request = indexedDB.open(dbname);
