@@ -19,6 +19,6 @@
   "scope": "/",
   "theme_color": "#3367D6",
   "gcm_sender_id": "103953800507",
-  "notification_public_key": "some_pub_key",
-  "notification_forward_url": "https://cpx0rpc.heliohost.org/endpoint.php"
+  "notification_public_key": "BGWiTMTOKGACAU3eX4yX-Q_eReu2lWRfIsImXwEQoDieGC_zp_S_1y9LR0yGasALWH7N3DYLK5CPGlNUNuPRezc",
+  "notification_forward_url": "https://cpx0rpc.github.io/endpoint.php"
 }
