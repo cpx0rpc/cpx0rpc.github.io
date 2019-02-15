@@ -17,7 +17,7 @@ function createDB(dbname, tablename, pv) {
 		var objStore = db.createObjectStore(tablename, {keyPath: 'id', autoIncrement: true});
 	};
 
-	request.onsuccess = functioni(event) {
+	request.onsuccess = function(event) {
 		var after = performance.now();
 		console.log("[SW] Opening took: " + (after - before) + "ms.");
 	};
