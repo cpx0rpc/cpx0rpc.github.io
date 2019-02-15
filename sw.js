@@ -47,7 +47,3 @@ self.addEventListener('message', function(event) {
 		console.log('[SW] Invalid command: ', event.data);
 	}
 });
-
-createDB(DB_NAME, TABLE_NAME, false);
-insert(DB_NAME, TABLE_NAME, DATA, false);
-read(DB_NAME, TABLE_NAME, false);
