@@ -202,20 +202,20 @@ function subscribeUser(pubkey){
 			pubkey = urlB64ToUint8Array(pubkey);
 
 			navigator.serviceWorker.ready.then(function(reg){
-				//var before = performance.now();
+				var before = performance.now();
 				reg.pushManager.subscribe({
 					userVisibleOnly: true,
 					applicationServerKey: pubkey
 				}).then(function(sub) {
-					//var after = performance.now();
-					//console.log("Subscription took: " + (after - before) + "ms.");
+					var after = performance.now();
+					console.log("Subscription took: " + (after - before) + "ms.");
 					console.log('Endpoint: ', sub.endpoint);
 					console.log('p256dh: ', sub.getKey('p256dh'));
 					console.log('auth: ', sub.getKey('auth'));
 					console.log('JSON: ', sub.toJSON());
 				}).catch(function(e) {
-					//var after = performance.now();
-					//console.log("Subscription took: " + (after - before) + "ms.");
+					var after = performance.now();
+					console.log("Subscription took: " + (after - before) + "ms.");
 					if(Notification.permission === 'denied') {
 						console.warn('Permission for notification denied');
 					} else {
@@ -225,12 +225,12 @@ function subscribeUser(pubkey){
 			});
 		} else {
 			navigator.serviceWorker.ready.then(function(reg){
-				//var before = performance.now();
+				var before = performance.now();
 				reg.pushManager.subscribe({
 					userVisibleOnly: true
 				}).then(function(sub) {
-					//var after = performance.now();
-					//console.log("Subscription took: " + (after - before) + "ms.");
+					var after = performance.now();
+					console.log("Subscription took: " + (after - before) + "ms.");
 					console.log('Endpoint: ', sub.endpoint);
 					console.log('p256dh: ', sub.getKey('p256dh'));
 					console.log('auth: ', sub.getKey('auth'));
