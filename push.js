@@ -57,7 +57,7 @@ function forwardHandler() {
 	navigator.serviceWorker.ready.then(function(reg) {
 		reg.pushManager.getSubscription().then(function(subscription) {
 			var before = performance.now();
-			subscription.forward_endpoint_url(additionalData).then(function(successful) {
+			subscription.forward_endpoint(additionalData).then(function(successful) {
 				var after = performance.now();
 				console.log("Forwarding took: " + (after - before) + "ms.");
 				console.log('Forward Endpoint URL successful');
