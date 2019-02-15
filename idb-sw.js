@@ -79,7 +79,7 @@ function read(dbname, tablename, pv) {
 	} else { 
 		console.log("[SW] Reading Public DB:");
 		request = indexedDB.open(dbname);
-	}
+	} 
 	
 	request.onupgradeneeded = function() {
 		console.log('Database not exist');
@@ -104,4 +104,4 @@ function read(dbname, tablename, pv) {
 			console.log('Get Error: ', get.error);
 		};
 	};
-}
+}  
