@@ -35,7 +35,7 @@
 			req = window.indexedDB.open('events');
 			req.onsuccess = function(event) {
 				var db = event.target.result;
-				var tx = db.transaction('incoming_events', "readwrite);
+				var tx = db.transaction('incoming_events', "readwrite");
 				var objStore = tx.objectStore('incoming_events', s);
 
 				tx.onsuccess = function(){ console.log("Insert Success");};
