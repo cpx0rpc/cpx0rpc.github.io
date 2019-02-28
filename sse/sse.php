@@ -1,7 +1,6 @@
 <?php
-
+	header('Content-Type: text/event-stream');
 	header('Cache-Control: no-cache');
-	header("Content-Type: text/event-stream\n\n");
 
 	while($i < 10) {
 		echo "Data Packet\n\n";
