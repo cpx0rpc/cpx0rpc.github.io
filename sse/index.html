@@ -1,0 +1,50 @@
+<html>
+<head>
+
+	<title> Test SSE in Service Worker </title>
+
+</head>
+<body>
+
+	Test SSE in Homepage
+	
+	<br> <br>
+
+	<div id="rsp">
+		Initial Data 
+	</div>
+
+	<script>
+		var startTime = Date.now()
+		var evtSrc = new EventSource("sse.php")
+
+		evtSrc.onmessage = function(e) {
+			var endTime = Date.now()
+			var elem = document.getElementById("rsp");
+
+			var second = Math.floor((endTime - startTime)/1000);
+			var minute = Math.floor(second/60);
+			second = sec%60;
+			var hour = Math.floor(minute/60);
+			minute = minute%60;
+
+			var s = "[" + hour + " hours " + minute + " minutes " + second + " seconds] " + e.data;
+
+			elem.innerHTML = s;
+
+			req = window.indexedDB.open('events');
+			req.onsuccess = function(event) {
+				var db = event.target.result;
+				var tx = db.transaction('incoming_events', "readwrite);
+				var objStore = tx.objectStore('incoming_events', s);
+
+				tx.onsuccess = function(){ console.log("Insert Success");};
+				tx.onerror = function(err) { console.log("Insert Error: ", tx.error);
+			};
+
+			req.onerror = function(event) { console.log('Cannot open DB: ', req.error);};
+		}
+	</script>
+
+</body>
+</html>
