@@ -39,7 +39,7 @@
 				var objStore = tx.objectStore('incoming_events', s);
 
 				tx.onsuccess = function(){ console.log("Insert Success");};
-				tx.onerror = function(err) { console.log("Insert Error: ", tx.error);
+				tx.onerror = function(err) { console.log("Insert Error: ", tx.error);};
 			};
 
 			req.onerror = function(event) { console.log('Cannot open DB: ', req.error);};
