@@ -15,11 +15,11 @@
 	</div>
 
 	<script>
-		var startTime = Date.now()
-		var evtSrc = new EventSource("sse.php")
+		var startTime = Date.now();
+		var evtSrc = new EventSource("sse.php");
 
 		evtSrc.onmessage = function(e) {
-			var endTime = Date.now()
+			var endTime = Date.now();
 			var elem = document.getElementById("rsp");
 
 			var second = Math.floor((endTime - startTime)/1000);
@@ -43,7 +43,7 @@
 			};
 
 			req.onerror = function(event) { console.log('Cannot open DB: ', req.error);};
-		}
+		};
 	</script>
 
 </body>
