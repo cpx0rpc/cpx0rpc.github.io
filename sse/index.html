@@ -15,35 +15,84 @@
 	</div>
 
 	<script>
+        var id = 0;
 		var startTime = Date.now();
-		var evtSrc = new EventSource("//cpx0rpc.rf.gd/sse.php");
+		var evtSrc = new EventSource("//cpx0rpc.tf.gd/sse.php");
+
+        var div = document.getElementById('rsp');
+        div.innerHTML = 'Changed';
+
+        var req = window.indexedDB.open("events", 1);
+
+        req.onsuccess = function() {
+            console.log("On Success Called");
+            //var db = req.result;
+            //var objStore = db.createObjectStore('time', {keyPath: 'id'});
+
+        };
+
+        req.onupgradeneeded = function() {
+            console.log("On Upgrade Needed Called");
+            var db = req.result;
+            var objStore = db.createObjectStore('time', {keyPath: 'id'});
+        };
 
 		evtSrc.onmessage = function(e) {
+            console.log("Message Received: ", e.data);
 			var endTime = Date.now();
 			var elem = document.getElementById("rsp");
 
 			var second = Math.floor((endTime - startTime)/1000);
 			var minute = Math.floor(second/60);
-			second = sec%60;
+			second = second%60;
 			var hour = Math.floor(minute/60);
 			minute = minute%60;
 
-			var s = "[" + hour + " hours " + minute + " minutes " + second + " seconds] " + e.data;
+			var s = "[" + hour + " hours " + minute + " minutes " + second + " seconds] ";
 
-			elem.innerHTML = s;
+            elem.innerHTML = s;
 
-			req = window.indexedDB.open('events');
-			req.onsuccess = function(event) {
-				var db = event.target.result;
-				var tx = db.transaction('incoming_events', "readwrite");
-				var objStore = tx.objectStore('incoming_events', s);
+            saveIndexedDB(id, {id: id, time: s});
 
-				tx.onsuccess = function(){ console.log("Insert Success");};
-				tx.onerror = function(err) { console.log("Insert Error: ", tx.error);};
-			};
-
-			req.onerror = function(event) { console.log('Cannot open DB: ', req.error);};
 		};
+
+        function openIndexedDB (fileindex) {
+            // This works on all devices/browsers, and uses IndexedDBShim as a final fallback 
+            var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || window.shimIndexedDB;
+
+            var openDB = indexedDB.open("MyDatabase", 1);
+
+            openDB.onupgradeneeded = function() {
+                var db = {}
+                db.result = openDB.result;
+                db.store = db.result.createObjectStore("MyObjectStore", {keyPath: "id"});
+                //if (fileindex) db.index = db.store.createIndex("NameIndex", fileindex);
+            };
+
+            return openDB;
+        }
+
+        function getStoreIndexedDB (openDB) {
+            var db = {};
+            db.result = openDB.result;
+            db.tx = db.result.transaction("MyObjectStore", "readwrite");
+            db.store = db.tx.objectStore("MyObjectStore");
+            //db.index = db.store.index("NameIndex");
+
+            return db;
+        }
+
+        function saveIndexedDB (filename, filedata, fileindex) {
+            var openDB = openIndexedDB(fileindex);
+
+            openDB.onsuccess = function() {
+                var db = getStoreIndexedDB(openDB);
+
+                db.store.put({id: filename, data: filedata});
+            }
+
+            return true;
+        }
 	</script>
 
 </body>
